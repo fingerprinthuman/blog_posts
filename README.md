@@ -37,7 +37,8 @@ GITHUB_TOKEN=... GITHUB_REPO=fingerprinthuman/blog_posts \
 Or drop a Markdown file into `src/content/blog/` and push to `main`; the
 workflow rebuilds and deploys the site.
 
-GitHub Pages must be able to build from a **public** repository (Pages is not
-available for private repos on the free plan). The deploy job enables Pages
-automatically with build type "GitHub Actions"; no manual settings step is
-needed.
+GitHub Pages must be **enabled once** in the repository settings: Settings →
+Pages → Build and deployment → Source: **GitHub Actions**. This cannot be done
+from a workflow because the default `GITHUB_TOKEN` is not allowed to create the
+Pages site (it can only deploy to an existing one). After that one-time step,
+every push to `main` builds and deploys automatically.
