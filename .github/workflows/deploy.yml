@@ -45,6 +45,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Enable Pages (build via Actions)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" -F build_type=workflow >/dev/null 2>&1; then
+            echo "Pages site is configured to build via GitHub Actions."
+          else
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/pages" -F build_type=workflow
+            echo "Pages site created with build via GitHub Actions."
+          fi
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
