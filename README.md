@@ -1,4 +1,4 @@
-# Geometry and more — Astro site
+# AI Experiments — Astro site
 
 Static blog built with [Astro](https://astro.build), migrated from the old
 Blogger workflow. Lives at <https://fingerprinthuman.github.io/blog_posts>.
